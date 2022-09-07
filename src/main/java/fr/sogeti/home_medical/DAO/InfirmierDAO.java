@@ -28,4 +28,8 @@ public class InfirmierDAO {
         this.patients.add(patient);
     }
 
+    public void removePatient(PatientDAO patient) {
+        this.patients.remove(patient);
+    }
+
 }

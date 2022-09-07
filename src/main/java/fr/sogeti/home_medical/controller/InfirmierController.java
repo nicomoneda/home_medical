@@ -3,6 +3,7 @@ package fr.sogeti.home_medical.controller;
 import fr.sogeti.home_medical.DAO.InfirmierDAO;
 import fr.sogeti.home_medical.DAO.PatientDAO;
 import fr.sogeti.home_medical.service.InfirmierService;
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,12 @@ public class InfirmierController {
         return this.service.getById(id);
     }
 
+    @GetMapping("/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<InfirmierDAO> getByName(@PathVariable String name) {
+        return this.service.getByName(name);
+    }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
     public InfirmierDAO createInfirmier(@RequestBody InfirmierDAO newInfirmier) {
@@ -39,8 +46,13 @@ public class InfirmierController {
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public InfirmierDAO updatePatients(@PathVariable String id, @RequestBody PatientDAO patient) {
+    public InfirmierDAO addPatients(@PathVariable String id, @RequestBody PatientDAO patient) {
         return this.service.addPatient(id, patient);
     }
 
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public InfirmierDAO removePatients(@PathVariable String id, @RequestBody PatientDAO patient) {
+        return this.service.removePatient(id, patient);
+    }
 }
