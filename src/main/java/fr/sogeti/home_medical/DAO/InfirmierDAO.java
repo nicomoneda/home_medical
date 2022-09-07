@@ -18,7 +18,7 @@ public class InfirmierDAO {
     private String id ;
     private String nom ;
     private String prenom ;
-    private String NumeroProfessionnel ;
+    private String numeroProfessionnel ;
     private String telephoneMobile ;
     private String telephoneFixe ;
     @DBRef
