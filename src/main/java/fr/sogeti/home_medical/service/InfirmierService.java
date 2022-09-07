@@ -27,6 +27,13 @@ public class InfirmierService {
         return this.repo.findById(id);
     }
 
+    public List<InfirmierDAO> getByName(String name) {
+        List<InfirmierDAO> infirmiers = this.repo.findAll();
+        infirmiers = infirmiers.stream().filter(item -> item.getNom() == name).toList();
+        return infirmiers ;
+        //return this.repo.findBy();
+    }
+
     public InfirmierDAO createInfirmier (InfirmierDAO newInfirmier) {
         return this.repo.save(newInfirmier);
     }
@@ -37,5 +44,10 @@ public class InfirmierService {
         return this.repo.save(infirmier);
     }
 
+    public InfirmierDAO removePatient(String id, PatientDAO patient) {
+        InfirmierDAO infirmier = this.repo.findById(id).get();
+        infirmier.removePatient(patient);
+        return this.repo.save(infirmier);
+    }
 }
 
