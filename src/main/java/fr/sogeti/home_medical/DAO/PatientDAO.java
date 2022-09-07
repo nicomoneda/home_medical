@@ -15,5 +15,4 @@ public class PatientDAO {
     private String numeroSecuriteSociale;
 
     // todo :  ajouter l'infirmierDAO
-
 }

@@ -1,4 +1,5 @@
 package fr.sogeti.home_medical.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,14 +53,4 @@ public class PatientController {
     public void updatePatient(){
         //todo
     }
-
-
-    /**
-     * method that remove a patient
-     * dont remove patient from DB
-     */
-    public void diselectPatient(){
-        //todo
-    }
-
 }
