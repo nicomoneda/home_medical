@@ -35,7 +35,7 @@ public class InfirmierService {
     }
 
     public InfirmierDAO createInfirmier (InfirmierDAO newInfirmier) {
-        return this.repo.save(newInfirmier);
+        return this.repo.insert(newInfirmier);
     }
 
     public InfirmierDAO addPatient(String id, PatientDAO patient) {
@@ -48,6 +48,11 @@ public class InfirmierService {
         InfirmierDAO infirmier = this.repo.findById(id).get();
         infirmier.removePatient(patient);
         return this.repo.save(infirmier);
+    }
+
+    public String deleteInfirmier(String id) {
+        this.repo.deleteById(id);
+        return "Infirmier Deleted!";
     }
 }
 

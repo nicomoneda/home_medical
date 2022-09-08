@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/infirmier")
+@CrossOrigin
 public class InfirmierController {
 
     private InfirmierService service;
@@ -44,15 +45,21 @@ public class InfirmierController {
         return this.service.createInfirmier(newInfirmier);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/add")
     @ResponseStatus(HttpStatus.OK)
     public InfirmierDAO addPatients(@PathVariable String id, @RequestBody PatientDAO patient) {
         return this.service.addPatient(id, patient);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/remove")
     @ResponseStatus(HttpStatus.OK)
     public InfirmierDAO removePatients(@PathVariable String id, @RequestBody PatientDAO patient) {
         return this.service.removePatient(id, patient);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteInfirmier(@PathVariable String id){
+        return this.service.deleteInfirmier(id);
     }
 }
