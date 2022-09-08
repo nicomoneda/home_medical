@@ -7,14 +7,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/deplacement")
+@RequestMapping("/deplacements")
 public class DeplacementController {
     private DeplacementService dService;
     @Autowired
     DeplacementController(DeplacementService dService){
         this.dService = dService;
+    }
+    @GetMapping("")
+    @ResponseStatus(HttpStatus.OK)
+    public List<DeplacementDAO> getAll() {
+        return this.dService.getAll();
+    }
+    @GetMapping("/id")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<DeplacementDAO> getById(@PathVariable String id) {
+        return this.dService.getById(id);
     }
 
 
