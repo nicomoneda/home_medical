@@ -15,14 +15,14 @@ import java.util.List;
 @Document("infirmier")
 public class InfirmierDAO {
     @Id
-    private String id ;
-    private String nom ;
-    private String prenom ;
-    private String numeroProfessionnel ;
-    private String telephoneMobile ;
-    private String telephoneFixe ;
+    private String id;
+    private String nom;
+    private String prenom;
+    private String numeroProfessionnel;
+    private String telephoneMobile;
+    private String telephoneFixe;
     @DBRef
-    private List<PatientDAO> patients ;
+    private List<PatientDAO> patients;
 
     public void addPatient(PatientDAO patient) {
         this.patients.add(patient);

@@ -1,7 +1,11 @@
+#spring:
+#  data:
+#    mongodb:
+#      port: 27017
+#      host: localhost
+#      database: cabinet_medical
+
 spring:
   data:
     mongodb:
-      port: 27017
-      host: localhost
-      database: cabinet_medical
-
+      uri: mongodb+srv://userprojet:Apple2022@cluster0.znabk5g.mongodb.net/cabinet_medical
