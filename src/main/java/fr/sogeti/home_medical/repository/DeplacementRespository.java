@@ -10,7 +10,4 @@ import java.util.Optional;
 @Repository
 public interface DeplacementRespository extends MongoRepository<DeplacementDAO,String> {
 
-    List<DeplacementDAO> findDeplacementDAOSByPatientNo(String patientNo);
-    List<DeplacementDAO> findDeplacementDAOSByPatientNoAndInfirmierNo(String patientNo,String infirmierNo);
-
 }

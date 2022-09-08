@@ -17,22 +17,11 @@ public class DeplacementController {
         this.dService = dService;
     }
 
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<DeplacementDAO> getByPatient(@PathVariable String id) {
-        return this.dService.getByPatient(id);
-    }
-
-    @GetMapping("")
-    @ResponseStatus(HttpStatus.OK)
-    public List<DeplacementDAO> getByPatientAndInfirmier(@PathVariable String patientNo, String infirmierNo){
-        return this.dService.getByPatientAndInfirmier(patientNo,infirmierNo);
-    }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public DeplacementDAO addDeplacement(@RequestBody DeplacementDAO newDeplacement){
-        return this.dService.addDeplacement(newDeplacement);
+    public DeplacementDAO createDeplacement(@RequestBody DeplacementDAO newDeplacement){
+        return this.dService.createDeplacement(newDeplacement);
     }
 
     @PostMapping("")

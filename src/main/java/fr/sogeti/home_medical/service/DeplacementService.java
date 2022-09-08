@@ -17,15 +17,8 @@ public class DeplacementService {
         this.deplacementRepo = deplacementRepo;
     }
 
-    public List<DeplacementDAO> getByPatient(String patientId) {
-        return this.deplacementRepo.findDeplacementDAOSByPatientNo(patientId);
-    }
 
-    public List<DeplacementDAO> getByPatientAndInfirmier(String patientNo, String infirmierNo){
-        return this.deplacementRepo.findDeplacementDAOSByPatientNoAndInfirmierNo(patientNo, infirmierNo);
-    }
-
-    public DeplacementDAO addDeplacement(DeplacementDAO newDeplacement){
+    public DeplacementDAO createDeplacement(DeplacementDAO newDeplacement){
         return this.deplacementRepo.insert(newDeplacement);
     }
     public DeplacementDAO updateDeplacement(DeplacementDAO newDeplacement){
