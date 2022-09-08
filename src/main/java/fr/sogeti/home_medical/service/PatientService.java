@@ -11,13 +11,14 @@ import org.springframework.web.server.ResponseStatusException;
 import fr.sogeti.home_medical.DAO.DeplacementDAO;
 import fr.sogeti.home_medical.DAO.InfirmierDAO;
 import fr.sogeti.home_medical.DAO.PatientDAO;
+import fr.sogeti.home_medical.repository.DeplacementRespository;
 import fr.sogeti.home_medical.repository.PatientRepository;
 
 @Service
 public class PatientService {
 
     private PatientRepository patientRepo;
-    // private DeplacementRespository deplacementRepo;
+    private DeplacementRespository deplacementRepo;
 
     @Autowired
     public PatientService(PatientRepository patientRepo) {
@@ -84,13 +85,14 @@ public class PatientService {
      * Recupérer les déplacements liés à ce patient
      */
     public List<DeplacementDAO> getDeplacementForThisPatient(String patientId) {
-        /*
-         * todo :
-         * boucler sur la liste des déplacements
-         * récuperer le deplacement dont l'id du patient correspond
-         * à l'id passé en paramètre
-         */
+       PatientDAO patient  = this.patientRepo.findById(patientId).get();
+       return patient.getDeplacement();
+    }
 
-        return null;
+    public PatientDAO addDeplacement(DeplacementDAO deplacement, String id ){
+        PatientDAO patient  = this.patientRepo.findById(id).get();
+        patient.addDeplacement(deplacement);
+        this.patientRepo.save(patient);
+        return patient;
     }
 }

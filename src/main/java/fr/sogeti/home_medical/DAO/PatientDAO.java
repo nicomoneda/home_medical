@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,4 +25,11 @@ public class PatientDAO {
 
     @DBRef
     private InfirmierDAO infirmier;
+    @DBRef
+    private List<DeplacementDAO> deplacement;
+
+    public void addDeplacement(DeplacementDAO deplacement){
+        this.deplacement.add(deplacement);
+    }
+
 }
