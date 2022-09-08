@@ -9,7 +9,4 @@ import java.util.Optional;
 
 @Repository
 public interface DeplacementRespository extends MongoRepository<DeplacementDAO,String> {
-
-    List<DeplacementDAO>
-
 }
