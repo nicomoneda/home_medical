@@ -18,7 +18,6 @@ public class DeplacementDAO {
     private String id;
     private int cout;
     private LocalDateTime dateTime;
-    private PatientDAO patient;
-    private InfirmierDAO infirmier;
+
 
 }

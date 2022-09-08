@@ -26,8 +26,8 @@ public class DeplacementController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public DeplacementDAO updateDeplacement(@RequestBody DeplacementDAO newDeplacement){
-        return this.dService.updateDeplacement(newDeplacement);
+    public DeplacementDAO updateDeplacement(@RequestBody String id, DeplacementDAO newDeplacement){
+        return this.dService.updateDeplacement(id,newDeplacement);
     }
 
     @DeleteMapping("/id")
