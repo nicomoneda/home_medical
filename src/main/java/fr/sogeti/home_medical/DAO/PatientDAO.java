@@ -23,4 +23,5 @@ public class PatientDAO {
 
     @DBRef
     private InfirmierDAO infirmier;
+
 }

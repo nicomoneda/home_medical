@@ -1,8 +1,10 @@
 package fr.sogeti.home_medical.service;
 
+import fr.sogeti.home_medical.DAO.DeplacementDAO;
 import fr.sogeti.home_medical.DAO.InfirmierDAO;
 import fr.sogeti.home_medical.DAO.PatientDAO;
 import fr.sogeti.home_medical.repository.InfirmierRespository;
+import fr.sogeti.home_medical.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,12 @@ import java.util.Optional;
 public class InfirmierService {
 
     private InfirmierRespository repo;
+    private PatientRepository patientRepo;
 
     @Autowired
-    InfirmierService(InfirmierRespository repo){
+    InfirmierService(InfirmierRespository repo, PatientRepository patientRepo){
         this.repo = repo ;
+        this.patientRepo = patientRepo;
     }
 
     public List<InfirmierDAO> getAll(){
@@ -53,6 +57,19 @@ public class InfirmierService {
     public String deleteInfirmier(String id) {
         this.repo.deleteById(id);
         return "Infirmier Deleted!";
+    }
+
+    public List<PatientDAO> listAllMyPatients(String id) {
+        return this.repo.findById(id).get().getPatients();
+    }
+
+    public List<DeplacementDAO> listAllMyDeplacements(String id){
+        List<PatientDAO> patients = this.repo.findById(id).get().getPatients();
+        List<DeplacementDAO> deplacements = null ;
+        for (PatientDAO patient :patients ) {
+            deplacements.add(this.patientRepo.findById(patient.getId()).get().getDeplacements());
+        }
+        return deplacements ;
     }
 }
 

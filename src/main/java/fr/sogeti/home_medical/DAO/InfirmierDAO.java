@@ -23,6 +23,8 @@ public class InfirmierDAO {
     private String telephoneFixe;
     @DBRef
     private List<PatientDAO> patients;
+    @DBRef
+    private List<DeplacementDAO> deplacements;
 
     public void addPatient(PatientDAO patient) {
         this.patients.add(patient);
