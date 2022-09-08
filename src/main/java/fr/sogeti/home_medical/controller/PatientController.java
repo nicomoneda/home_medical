@@ -97,7 +97,7 @@ public class PatientController {
 
     @PatchMapping("/adddep/{id}")
     public PatientDAO addDeplacement(@RequestBody DeplacementDAO deplacement,@PathVariable String id ){
-       return service.addDeplacement(deplacement,id);
+       return this.service.addDeplacement(deplacement,id);
     }
 
 }
