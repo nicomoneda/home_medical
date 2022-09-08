@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.sogeti.home_medical.DAO.DeplacementDAO;
 import fr.sogeti.home_medical.DAO.InfirmierDAO;
 import fr.sogeti.home_medical.DAO.PatientDAO;
 import fr.sogeti.home_medical.service.PatientService;
 
 /**
- * class to manage client requests about patients informations
+ * class to manage client requests that ask for patients informations
  */
 @RestController
 @RequestMapping("/patient")
@@ -59,15 +60,8 @@ public class PatientController {
      */
     @GetMapping("/{name}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<PatientDAO> getPatientByName(@PathVariable String name) {
-        String patientId = null;
-        List<PatientDAO> patients = getAllPatients();
-        for (PatientDAO patient : patients) {
-            if (patient.getNom() == name) {
-                patientId = patient.getId();
-            }
-        }
-        return this.service.getPatientById(patientId);
+    public PatientDAO getPatientByName(@PathVariable String name) {
+        return this.service.getPatientByName(name);
     }
 
     /**
@@ -95,8 +89,16 @@ public class PatientController {
      * method that update nurse
      */
     @PutMapping("/{id}/nurse")
-    public InfirmierDAO updateNurse(@PathVariable String id, @RequestBody InfirmierDAO infirmier){
-    return this.service.updateNurse(id,infirmier); 
+    public InfirmierDAO updateNurse(@PathVariable String id, @RequestBody InfirmierDAO infirmier) {
+        return this.service.updateNurse(id, infirmier);
+    }
+
+    /**
+     * Afficher les déplacements liés à ce patient
+     */
+    @GetMapping("/deplacement")
+    public List<DeplacementDAO> getDeplacementForThisPatient(@PathVariable String patientId) {
+    return this.service.getDeplacementForThisPatient(patientId);
     }
 
 }

@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import fr.sogeti.home_medical.DAO.DeplacementDAO;
 import fr.sogeti.home_medical.DAO.InfirmierDAO;
 import fr.sogeti.home_medical.DAO.PatientDAO;
 import fr.sogeti.home_medical.repository.PatientRepository;
@@ -14,6 +17,7 @@ import fr.sogeti.home_medical.repository.PatientRepository;
 public class PatientService {
 
     private PatientRepository patientRepo;
+    // private DeplacementRespository deplacementRepo;
 
     @Autowired
     public PatientService(PatientRepository patientRepo) {
@@ -37,6 +41,21 @@ public class PatientService {
     }
 
     /**
+     * method that found patient by using his name
+     * 
+     * @param name
+     * @return
+     */
+    public PatientDAO getPatientByName(String name) {
+        List<PatientDAO> patients = getAllPatients();
+        for (PatientDAO patient : patients) {
+            if (patient.getNom().equals(name))
+                return patient;
+        }
+        throw new ResponseStatusException(HttpStatus.NO_CONTENT, "aucun resultat");
+    }
+
+    /**
      * method that create a new patient
      */
     public PatientDAO createPatient(PatientDAO patient) {
@@ -47,19 +66,34 @@ public class PatientService {
      * method that update patient information
      */
     public PatientDAO updatePatient(String id, PatientDAO patient) {
+        if (!id.equals(patient.getId()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         return this.patientRepo.save(patient);
-
     }
 
     /**
      * method that update nurse
      */
-    public InfirmierDAO updateNurse(String id, InfirmierDAO infirmier){
+    public InfirmierDAO updateNurse(String id, InfirmierDAO infirmier) {
         Optional<PatientDAO> patient = this.patientRepo.findById(id);
-        if(patient != null){
+        if (patient.isPresent()) {
             patient.get().setInfirmier(infirmier);
         }
         return infirmier;
+    }
+
+    /**
+     * Recupérer les déplacements liés à ce patient
+     */
+    public List<DeplacementDAO> getDeplacementForThisPatient(String patientId) {
+        /*
+         * todo :
+         * boucler sur la liste des déplacements
+         * récuperer le deplacement dont l'id du patient correspond
+         * à l'id passé en paramètre
+         */
+
+        return null;
     }
 
 }
