@@ -22,7 +22,7 @@ public class DeplacementController {
     public List<DeplacementDAO> getAll() {
         return this.dService.getAll();
     }
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<DeplacementDAO> getById(@PathVariable String id) {
         return this.dService.getById(id);
@@ -35,13 +35,13 @@ public class DeplacementController {
         return this.dService.createDeplacement(newDeplacement);
     }
 
-    @PostMapping("")
+    @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public DeplacementDAO updateDeplacement(@RequestBody String id, DeplacementDAO newDeplacement){
+    public DeplacementDAO updateDeplacement(@PathVariable String id, @RequestBody DeplacementDAO newDeplacement){
         return this.dService.updateDeplacement(id,newDeplacement);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteDeplacement(@PathVariable String id){
         this.dService.deleteDeplacement(id);
