@@ -76,9 +76,7 @@ public class PatientService {
      */
     public InfirmierDAO updateNurse(String id, InfirmierDAO infirmier) {
         Optional<PatientDAO> patient = this.patientRepo.findById(id);
-        if (patient.isPresent()) {
-            patient.get().setInfirmier(infirmier);
-        }
+        patient.get().setInfirmier(infirmier);
         return infirmier;
     }
 
@@ -95,5 +93,4 @@ public class PatientService {
 
         return null;
     }
-
 }
