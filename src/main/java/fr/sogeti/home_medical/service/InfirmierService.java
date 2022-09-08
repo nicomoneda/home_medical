@@ -15,12 +15,12 @@ import java.util.Optional;
 public class InfirmierService {
 
     private InfirmierRespository repo;
-    private PatientRepository patientRepo;
+    private PatientService servicePatient ;
 
     @Autowired
-    InfirmierService(InfirmierRespository repo, PatientRepository patientRepo){
+    InfirmierService(InfirmierRespository repo, PatientService servicePatient){
         this.repo = repo ;
-        this.patientRepo = patientRepo;
+        this.servicePatient = servicePatient ;
     }
 
     public List<InfirmierDAO> getAll(){
@@ -67,7 +67,7 @@ public class InfirmierService {
         List<PatientDAO> patients = this.repo.findById(id).get().getPatients();
         List<DeplacementDAO> deplacements = null ;
         for (PatientDAO patient :patients ) {
-            deplacements.add(this.patientRepo.findById(patient.getId()).get().getDeplacements());
+            deplacements.addAll(this.servicePatient.getDeplacementForThisPatient(patient.getId()).stream().toList());
         }
         return deplacements ;
     }
