@@ -34,7 +34,7 @@ public class InfirmierController {
         return this.service.getById(id);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/search/{name}")
     @ResponseStatus(HttpStatus.OK)
     public List<InfirmierDAO> getByName(@PathVariable String name) {
         return this.service.getByName(name);
