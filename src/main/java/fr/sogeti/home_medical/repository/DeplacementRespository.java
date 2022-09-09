@@ -1,6 +1,7 @@
 package fr.sogeti.home_medical.repository;
 
 import fr.sogeti.home_medical.DAO.DeplacementDAO;
+import fr.sogeti.home_medical.DTO.DeplacementDTO;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

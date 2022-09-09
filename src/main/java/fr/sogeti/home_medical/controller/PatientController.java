@@ -3,6 +3,7 @@ package fr.sogeti.home_medical.controller;
 import java.util.List;
 import java.util.Optional;
 
+import fr.sogeti.home_medical.DTO.DeplacementDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -94,10 +95,5 @@ public class PatientController {
     return this.service.getDeplacementForThisPatient(patientId);
     }
 
-
-    @PatchMapping("/{id}/addDep")
-    public PatientDAO addDeplacement(@RequestBody DeplacementDAO deplacement,@PathVariable String id ){
-       return this.service.addDeplacement(deplacement,id);
-    }
 
 }
