@@ -75,10 +75,11 @@ public class PatientService {
     /**
      * method that update nurse
      */
-    public InfirmierDAO updateNurse(String id, InfirmierDAO infirmier) {
-        Optional<PatientDAO> patient = this.patientRepo.findById(id);
-        patient.get().setInfirmier(infirmier);
-        return infirmier;
+    public PatientDAO updateNurse(String id, InfirmierDAO infirmier) {
+        PatientDAO patient = this.patientRepo.findById(id).get();
+        patient.setInfirmier(infirmier);
+        this.patientRepo.save(patient);
+        return patient;
     }
 
     /**

@@ -51,7 +51,7 @@ public class PatientController {
      * method that show one selected patient
      * resquest done by patient name
      */
-    @GetMapping("/{name}")
+    @GetMapping("/search/{name}")
     @ResponseStatus(HttpStatus.OK)
     public PatientDAO getPatientByName(@PathVariable String name) {
         return this.service.getPatientByName(name);
@@ -71,7 +71,7 @@ public class PatientController {
     /**
      * method that update patient information
      */
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}/update")
     @ResponseStatus(HttpStatus.OK)
     public PatientDAO updatePatient(@PathVariable String id, @RequestBody PatientDAO patient) {
         this.service.updatePatient(id, patient);
@@ -81,21 +81,21 @@ public class PatientController {
     /**
      * method that update nurse
      */
-    @PutMapping("/{id}/nurse")
-    public InfirmierDAO updateNurse(@PathVariable String id, @RequestBody InfirmierDAO infirmier) {
+    @PatchMapping("/{id}/nurse")
+    public PatientDAO updateNurse(@PathVariable String id, @RequestBody InfirmierDAO infirmier) {
         return this.service.updateNurse(id, infirmier);
     }
 
     /**
      * Afficher les déplacements liés à ce patient
      */
-    @GetMapping("/deplacement")
+    @GetMapping("/{patientId}/deplacement")
     public List<DeplacementDAO> getDeplacementForThisPatient(@PathVariable String patientId) {
     return this.service.getDeplacementForThisPatient(patientId);
     }
 
 
-    @PatchMapping("/adddep/{id}")
+    @PatchMapping("/{id}/addDep")
     public PatientDAO addDeplacement(@RequestBody DeplacementDAO deplacement,@PathVariable String id ){
        return this.service.addDeplacement(deplacement,id);
     }
