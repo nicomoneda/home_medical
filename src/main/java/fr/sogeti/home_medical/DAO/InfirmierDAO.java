@@ -1,5 +1,6 @@
 package fr.sogeti.home_medical.DAO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,10 @@ public class InfirmierDAO {
     private String telephoneMobile;
     private String telephoneFixe;
     @DBRef
+    @JsonIgnore
     private List<PatientDAO> patients;
     @DBRef
+    @JsonIgnore
     private List<DeplacementDAO> deplacements;
 
     public void addPatient(PatientDAO patient) {
