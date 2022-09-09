@@ -3,6 +3,7 @@ package fr.sogeti.home_medical.service;
 import java.util.List;
 import java.util.Optional;
 
+import fr.sogeti.home_medical.DTO.DeplacementDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -90,10 +91,4 @@ public class PatientService {
        return patient.getDeplacement();
     }
 
-    public PatientDAO addDeplacement(DeplacementDAO deplacement, String id ){
-        PatientDAO patient  = this.patientRepo.findById(id).get();
-        patient.addDeplacement(deplacement);
-        this.patientRepo.save(patient);
-        return patient;
-    }
 }

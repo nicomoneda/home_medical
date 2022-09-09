@@ -1,6 +1,7 @@
 package fr.sogeti.home_medical.controller;
 
 import fr.sogeti.home_medical.DAO.DeplacementDAO;
+import fr.sogeti.home_medical.DTO.DeplacementDTO;
 import fr.sogeti.home_medical.service.DeplacementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class DeplacementController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public DeplacementDAO createDeplacement(@RequestBody DeplacementDAO newDeplacement){
+    public DeplacementDAO createDeplacement(@RequestBody DeplacementDTO newDeplacement){
         return this.dService.createDeplacement(newDeplacement);
     }
 
