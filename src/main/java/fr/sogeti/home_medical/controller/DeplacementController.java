@@ -35,7 +35,7 @@ public class DeplacementController {
         return this.dService.createDeplacement(newDeplacement);
     }
 
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public DeplacementDAO updateDeplacement(@PathVariable String id, @RequestBody DeplacementDAO newDeplacement){
         return this.dService.updateDeplacement(id,newDeplacement);
