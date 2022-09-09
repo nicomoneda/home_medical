@@ -3,7 +3,7 @@
 #    mongodb:
 #      port: 27017
 #      host: localhost
-#      database: cabinet_medical
+#      database: formation
 
 spring:
   data:
