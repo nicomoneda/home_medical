@@ -28,10 +28,14 @@ public class InfirmierDAO {
     private List<DeplacementDAO> deplacements;
 
     public void addPatient(PatientDAO patient) {
+        if(this.patients == null){
+            this.patients = new ArrayList<>();
+        }
         this.patients.add(patient);
     }
 
     public void removePatient(PatientDAO patient) {
+        if(this.patients != null)
         this.patients.remove(patient);
     }
 

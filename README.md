@@ -54,3 +54,21 @@
 - afficher le nombre d’infirmier qui se sont trouvés en déplacement pour une date donnée
 - afficher le nombre total de déplacement pour un infirmier
 - afficher le cout total des déplacements pour un patient
+
+> ## API Specification
+- **GET {uri}/infirmier**			:		*obtenir la liste de tous les infirmiers*
+- **GET {uri}/infirmier/{id}**		 	:	*trouver informateur par identifiant*
+- **GET {uri}/infirmier/search/{nom}**	:	*trouver infirmier par nom*
+- **GET {uri}/{id}/patients**			:	*trouver des patients par un infirmier*
+
+- **POST {uri}/infirmier + body**	:		*ajouter un infirmier*
+
+- **PATCH {uri}/infirmier/{id}/add/patient** :	*ajouter un patient à l'infirmier*
+
+
+
+- **GET {uri}/patient**				:    *obtenir une liste de tous les patients*
+- **POST {uri}/patient/new**		:	*ajouter un nouveau patient*
+
+- **GET {uri}/deplacements**		:	*obtenir tous les déplacements*
+- **POST {uri}/deplacements**		:	*ajouter un nouveau déplacement*
