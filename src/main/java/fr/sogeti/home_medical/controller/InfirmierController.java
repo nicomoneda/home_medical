@@ -1,5 +1,6 @@
 package fr.sogeti.home_medical.controller;
 
+import fr.sogeti.home_medical.DAO.DeplacementDAO;
 import fr.sogeti.home_medical.DAO.InfirmierDAO;
 import fr.sogeti.home_medical.DAO.PatientDAO;
 import fr.sogeti.home_medical.service.InfirmierService;
@@ -61,5 +62,19 @@ public class InfirmierController {
     @ResponseStatus(HttpStatus.OK)
     public String deleteInfirmier(@PathVariable String id){
         return this.service.deleteInfirmier(id);
+    }
+
+    // Lister tous les patients désignés à un infirmier
+    @GetMapping("/{id}/patients")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PatientDAO> listAllMyPatients(@PathVariable String id) {
+        return this.service.listAllMyPatients(id);
+    }
+
+    // Lister tous les déplacements désignés aux patients, qui ont désignés à un infirmier
+    @GetMapping("/{id}/deplacements")
+    @ResponseStatus(HttpStatus.OK)
+    public List<DeplacementDAO> listAllMyDeplacements(@PathVariable String id) {
+        return this.service.listAllMyDeplacements(id);
     }
 }
