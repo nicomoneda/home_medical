@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -118,6 +119,7 @@ public class InfirmierService {
         List<PatientDAO> patients = this.repo.findById(id).get().getPatients();
         List<DeplacementDAO> deplacements = null ;
         for (PatientDAO patient :patients ) {
+            deplacements = new ArrayList<DeplacementDAO>();
             deplacements.addAll(this.servicePatient.getDeplacementForThisPatient(patient.getId()).stream().toList());
         }
         if (deplacements.isEmpty()) throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No Deplacements registered for you!");
